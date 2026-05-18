@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\Account;
 use App\Models\FundSource;
 use App\Models\Transaction;
+use App\Models\Lot;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,33 +42,50 @@ class DatabaseSeeder extends Seeder
         );
 
         // Create Fund Sources
-        $fundA = FundSource::firstOrCreate(
+        $donorA = FundSource::firstOrCreate(
             ['code' => 'FA'],
-            ['name' => 'Fund A', 'donor_name' => 'World Bank', 'allocation_percentage' => 90.91]
+            [
+                'name' => 'Donor A',
+                'donor_name' => 'Donor A',
+                'allocation_percentage' => 50.00,
+                'initial_usd_balance' => 1000000.00,
+                'available_usd_balance' => 1000000.00,
+                'is_active' => true
+            ]
         );
-        $fundB = FundSource::firstOrCreate(
+        $donorB = FundSource::firstOrCreate(
             ['code' => 'FB'],
-            ['name' => 'Fund B', 'donor_name' => 'ADB', 'allocation_percentage' => 4.55]
+            [
+                'name' => 'Donor B',
+                'donor_name' => 'Donor B',
+                'allocation_percentage' => 25.00,
+                'initial_usd_balance' => 500000.00,
+                'available_usd_balance' => 500000.00,
+                'is_active' => true
+            ]
         );
-        $fundC = FundSource::firstOrCreate(
+        $donorC = FundSource::firstOrCreate(
             ['code' => 'FC'],
-            ['name' => 'Fund C', 'donor_name' => 'UNDP', 'allocation_percentage' => 4.54]
+            [
+                'name' => 'Donor C',
+                'donor_name' => 'Donor C',
+                'allocation_percentage' => 25.00,
+                'initial_usd_balance' => 500000.00,
+                'available_usd_balance' => 500000.00,
+                'is_active' => true
+            ]
         );
 
-        // Create a simple transaction
-        $transaction = Transaction::create([
-            'reference_number' => 'TRX-' . time(),
-            'type' => 'Expenditure',
-            'account_id' => $account->id,
-            'description' => 'Sample transaction for testing allocations',
-            'total_amount' => 220000,
-            'status' => 'Draft',
-            'created_by' => $user->id,
-        ]);
-
-        // Adjust the auto-generated splits to be exactly the requested amounts
-        $transaction->splits()->where('fund_source_id', $fundA->id)->update(['amount' => 200000]);
-        $transaction->splits()->where('fund_source_id', $fundB->id)->update(['amount' => 10000]);
-        $transaction->splits()->where('fund_source_id', $fundC->id)->update(['amount' => 10000]);
+        // Create Q1 Lot with 10,000 USD amount at rate 22,000
+        $lot = Lot::firstOrCreate(
+            ['reference_number' => 'LOT-Q1-2026'],
+            [
+                'description' => 'Q1 2026 Fund Request',
+                'requested_usd' => 10000.00,
+                'exchange_rate' => 22000.00,
+                'date_requested' => '2026-01-15',
+                'is_exhausted' => false
+            ]
+        );
     }
 }

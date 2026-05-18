@@ -43,6 +43,7 @@ class TransactionResource extends Resource
     {
         return [
             RelationManagers\SplitsRelationManager::class,
+            RelationManagers\ConsumedLotsRelationManager::class,
         ];
     }
 

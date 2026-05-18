@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\Transactions\Tables;
+namespace App\Filament\Resources\Lots\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TransactionsTable
+class LotsTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,27 +18,28 @@ class TransactionsTable
             ->columns([
                 TextColumn::make('reference_number')
                     ->searchable(),
-                TextColumn::make('type')
-                    ->badge(),
-                TextColumn::make('account.name')
-                    ->label('Account')
+                TextColumn::make('description')
+                    ->searchable(),
+                TextColumn::make('requested_usd')
+                    ->money('USD')
                     ->sortable(),
-                TextColumn::make('total_amount')
-                    ->label('Amount')
+                TextColumn::make('exchange_rate')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('total_lak')
                     ->numeric(0)
                     ->suffix(' LAK')
                     ->sortable(),
-                TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('createdBy.name')
-                    ->label('Created By')
+                TextColumn::make('remaining_lak')
+                    ->numeric(0)
+                    ->suffix(' LAK')
                     ->sortable(),
-                TextColumn::make('approvedBy.name')
-                    ->label('Approved By')
+                TextColumn::make('date_requested')
+                    ->date()
                     ->sortable(),
-                TextColumn::make('locked_at')
-                    ->dateTime()
-                    ->sortable(),
+                IconColumn::make('is_exhausted')
+                    ->boolean()
+                    ->label('Exhausted'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
