@@ -6,7 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -26,11 +26,10 @@ class AccountsTable
                 TextColumn::make('type')
                     ->label(__('Type'))
                     ->badge(),
-                TextColumn::make('parent.name')
+                TextColumn::make('parent.name.' . app()->getLocale())
                     ->label(__('Parent Account'))
                     ->sortable(),
-                IconColumn::make('is_active')
-                    ->boolean()
+                ToggleColumn::make('is_active')
                     ->label(__('Active')),
                 TextColumn::make('created_at')
                     ->dateTime()
