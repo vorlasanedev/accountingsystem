@@ -13,10 +13,8 @@ class AccountInfolist
         return $schema
             ->components([
                 TextEntry::make('code'),
-                TextEntry::make('name')
-                    ->label('Account Name (English)'),
-                TextEntry::make('lao_name')
-                    ->label('ຊື່ບັນຊີ (ພາສາລາວ)'),
+                TextEntry::make(app()->getLocale() === 'lo' ? 'lao_name' : 'name')
+                    ->label(app()->getLocale() === 'lo' ? 'ຊື່ບັນຊີ' : 'Account Name'),
                 TextEntry::make('type')
                     ->badge(),
                 TextEntry::make('parent.name')

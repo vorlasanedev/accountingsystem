@@ -18,12 +18,8 @@ class AccountsTable
             ->columns([
                 TextColumn::make('code')
                     ->searchable(),
-                TextColumn::make('name')
-                    ->label('Account Name (English)')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('lao_name')
-                    ->label('ຊື່ບັນຊີ (ພາສາລາວ)')
+                TextColumn::make(app()->getLocale() === 'lo' ? 'lao_name' : 'name')
+                    ->label(app()->getLocale() === 'lo' ? 'ຊື່ບັນຊີ' : 'Account Name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('type')
