@@ -24,6 +24,21 @@ class AccountResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('Accounts');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Account');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Accounts');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return AccountForm::configure($schema);

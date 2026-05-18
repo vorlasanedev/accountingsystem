@@ -17,19 +17,21 @@ class AccountsTable
         return $table
             ->columns([
                 TextColumn::make('code')
+                    ->label(__('Code'))
                     ->searchable(),
                 TextColumn::make(app()->getLocale() === 'lo' ? 'lao_name' : 'name')
-                    ->label(app()->getLocale() === 'lo' ? 'ຊື່ບັນຊີ' : 'Account Name')
+                    ->label(__('Account Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('type')
+                    ->label(__('Type'))
                     ->badge(),
                 TextColumn::make('parent.name')
-                    ->label('Parent Account')
+                    ->label(__('Parent Account'))
                     ->sortable(),
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label(__('Active')),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

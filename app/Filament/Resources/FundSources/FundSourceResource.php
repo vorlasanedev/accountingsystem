@@ -24,6 +24,21 @@ class FundSourceResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('Fund Sources');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Fund Source');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Fund Sources');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return FundSourceForm::configure($schema);

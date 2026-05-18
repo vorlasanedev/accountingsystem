@@ -24,6 +24,21 @@ class LotResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'reference_number';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('Lots');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Lot');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Lots');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return LotForm::configure($schema);

@@ -15,48 +15,48 @@ class TransactionForm
         return $schema
             ->components([
                 TextInput::make('reference_number')
-                    ->label(app()->getLocale() === 'lo' ? 'ເລກອ້າງອີງ' : 'Reference Number')
+                    ->label(__('Reference Number'))
                     ->required(),
                 Select::make('type')
-                    ->label(app()->getLocale() === 'lo' ? 'ປະເພດ' : 'Type')
+                    ->label(__('Type'))
                     ->options([
-                        'Revenue' => app()->getLocale() === 'lo' ? 'ລາຍຮັບ' : 'Revenue',
-                        'Expenditure' => app()->getLocale() === 'lo' ? 'ລາຍຈ່າຍ' : 'Expenditure'
+                        'Revenue' => __('Revenue'),
+                        'Expenditure' => __('Expenditure')
                     ])
                     ->required(),
                 Select::make('account_id')
-                    ->label(app()->getLocale() === 'lo' ? 'ບັນຊີ' : 'Account')
+                    ->label(__('Account'))
                     ->relationship('account', app()->getLocale() === 'lo' ? 'lao_name' : 'name')
                     ->required(),
                 Textarea::make('description')
-                    ->label(app()->getLocale() === 'lo' ? 'ຄຳອະທິບາຍ' : 'Description')
+                    ->label(__('Description'))
                     ->default(null)
                     ->columnSpanFull(),
                 TextInput::make('total_amount')
-                    ->label(app()->getLocale() === 'lo' ? 'ມູນຄ່າທັງໝົດ' : 'Total Amount')
+                    ->label(__('Total Amount'))
                     ->required()
                     ->numeric(),
                 Select::make('status')
-                    ->label(app()->getLocale() === 'lo' ? 'ສະຖານະ' : 'Status')
+                    ->label(__('Status'))
                     ->options([
-                        'Draft' => app()->getLocale() === 'lo' ? 'ຮ່າງ' : 'Draft',
-                        'Pending Review' => app()->getLocale() === 'lo' ? 'ລໍຖ້າກວດສອບ' : 'Pending review',
-                        'Approved' => app()->getLocale() === 'lo' ? 'ອະນຸມັດ' : 'Approved',
-                        'Rejected' => app()->getLocale() === 'lo' ? 'ປະຕິເສດ' : 'Rejected',
+                        'Draft' => __('Draft'),
+                        'Pending Review' => __('Pending review'),
+                        'Approved' => __('Approved'),
+                        'Rejected' => __('Rejected'),
                     ])
                     ->default('Draft')
                     ->required()
                     ->disabledOn('create'),
                 Select::make('created_by')
-                    ->label(app()->getLocale() === 'lo' ? 'ຜູ້ສ້າງ' : 'Created By')
+                    ->label(__('Created By'))
                     ->relationship('createdBy', 'name')
                     ->disabled(),
                 Select::make('approved_by')
-                    ->label(app()->getLocale() === 'lo' ? 'ຜູ້ອະນຸມັດ' : 'Approved By')
+                    ->label(__('Approved By'))
                     ->relationship('approvedBy', 'name')
                     ->disabled(),
                 DateTimePicker::make('locked_at')
-                    ->label(app()->getLocale() === 'lo' ? 'ວັນທີລັອກ' : 'Locked At')
+                    ->label(__('Locked At'))
                     ->disabled(),
             ]);
     }
