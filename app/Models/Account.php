@@ -9,6 +9,7 @@ class Account extends Model
     protected $fillable = [
         'code',
         'name',
+        'lao_name',
         'type',
         'parent_id',
         'is_active',

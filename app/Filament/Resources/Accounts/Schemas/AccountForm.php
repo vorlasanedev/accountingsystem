@@ -15,22 +15,29 @@ class AccountForm
         return $schema
             ->components([
                 TextInput::make('code')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 TextInput::make('name')
+                    ->label('Account Name (English)')
                     ->required(),
+                TextInput::make('lao_name')
+                    ->label('ຊື່ບັນຊີ (ພາສາລາວ)'),
                 Select::make('type')
                     ->options([
-            'Asset' => 'Asset',
-            'Liability' => 'Liability',
-            'Equity' => 'Equity',
-            'Revenue' => 'Revenue',
-            'Expense' => 'Expense',
-        ])
+                        'Asset' => 'Asset',
+                        'Equity/Fund' => 'Equity/Fund',
+                        'Control' => 'Control',
+                        'Income' => 'Income',
+                        'Expense' => 'Expense',
+                        'Adjustment' => 'Adjustment',
+                    ])
                     ->required(),
-                TextInput::make('parent_id')
-                    ->numeric()
-                    ->default(null),
+                Select::make('parent_id')
+                    ->label('Parent Account')
+                    ->relationship('parent', 'name')
+                    ->placeholder('Select Parent Account (Optional)'),
                 Toggle::make('is_active')
+                    ->default(true)
                     ->required(),
                 Textarea::make('description')
                     ->default(null)

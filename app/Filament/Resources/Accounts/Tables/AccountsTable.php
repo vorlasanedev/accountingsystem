@@ -19,14 +19,21 @@ class AccountsTable
                 TextColumn::make('code')
                     ->searchable(),
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Account Name (English)')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('lao_name')
+                    ->label('ຊື່ບັນຊີ (ພາສາລາວ)')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('type')
                     ->badge(),
-                TextColumn::make('parent_id')
-                    ->numeric()
+                TextColumn::make('parent.name')
+                    ->label('Parent Account')
                     ->sortable(),
                 IconColumn::make('is_active')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Active'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

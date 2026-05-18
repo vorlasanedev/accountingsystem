@@ -13,14 +13,18 @@ class AccountInfolist
         return $schema
             ->components([
                 TextEntry::make('code'),
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label('Account Name (English)'),
+                TextEntry::make('lao_name')
+                    ->label('ຊື່ບັນຊີ (ພາສາລາວ)'),
                 TextEntry::make('type')
                     ->badge(),
-                TextEntry::make('parent_id')
-                    ->numeric()
+                TextEntry::make('parent.name')
+                    ->label('Parent Account')
                     ->placeholder('-'),
                 IconEntry::make('is_active')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Active'),
                 TextEntry::make('description')
                     ->placeholder('-')
                     ->columnSpanFull(),
