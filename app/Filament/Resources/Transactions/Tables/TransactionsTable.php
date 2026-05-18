@@ -16,26 +16,30 @@ class TransactionsTable
         return $table
             ->columns([
                 TextColumn::make('reference_number')
+                    ->label(app()->getLocale() === 'lo' ? 'ເລກອ້າງອີງ' : 'Reference Number')
                     ->searchable(),
                 TextColumn::make('type')
+                    ->label(app()->getLocale() === 'lo' ? 'ປະເພດ' : 'Type')
                     ->badge(),
-                TextColumn::make('account.name')
-                    ->label('Account')
+                TextColumn::make(app()->getLocale() === 'lo' ? 'account.lao_name' : 'account.name')
+                    ->label(app()->getLocale() === 'lo' ? 'ບັນຊີ' : 'Account')
                     ->sortable(),
                 TextColumn::make('total_amount')
-                    ->label('Amount')
+                    ->label(app()->getLocale() === 'lo' ? 'ມູນຄ່າ' : 'Amount')
                     ->numeric(0)
                     ->suffix(' LAK')
                     ->sortable(),
                 TextColumn::make('status')
+                    ->label(app()->getLocale() === 'lo' ? 'ສະຖານະ' : 'Status')
                     ->badge(),
                 TextColumn::make('createdBy.name')
-                    ->label('Created By')
+                    ->label(app()->getLocale() === 'lo' ? 'ຜູ້ສ້າງ' : 'Created By')
                     ->sortable(),
                 TextColumn::make('approvedBy.name')
-                    ->label('Approved By')
+                    ->label(app()->getLocale() === 'lo' ? 'ຜູ້ອະນຸມັດ' : 'Approved By')
                     ->sortable(),
                 TextColumn::make('locked_at')
+                    ->label(app()->getLocale() === 'lo' ? 'ວັນທີລັອກ' : 'Locked At')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_at')
