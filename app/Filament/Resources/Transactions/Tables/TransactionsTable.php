@@ -21,7 +21,7 @@ class TransactionsTable
                 TextColumn::make('type')
                     ->label(__('Type'))
                     ->badge(),
-                TextColumn::make(app()->getLocale() === 'lo' ? 'account.lao_name' : 'account.name')
+                TextColumn::make('account.name.' . app()->getLocale())
                     ->label(__('Account'))
                     ->sortable(),
                 TextColumn::make('total_amount')

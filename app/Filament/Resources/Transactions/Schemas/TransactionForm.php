@@ -26,7 +26,8 @@ class TransactionForm
                     ->required(),
                 Select::make('account_id')
                     ->label(__('Account'))
-                    ->relationship('account', app()->getLocale() === 'lo' ? 'lao_name' : 'name')
+                    ->relationship('account', 'id')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->translated_name)
                     ->required(),
                 Textarea::make('description')
                     ->label(__('Description'))

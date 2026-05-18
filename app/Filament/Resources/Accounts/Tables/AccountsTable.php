@@ -19,7 +19,7 @@ class AccountsTable
                 TextColumn::make('code')
                     ->label(__('Code'))
                     ->searchable(),
-                TextColumn::make(app()->getLocale() === 'lo' ? 'lao_name' : 'name')
+                TextColumn::make('name.' . app()->getLocale())
                     ->label(__('Account Name'))
                     ->searchable()
                     ->sortable(),

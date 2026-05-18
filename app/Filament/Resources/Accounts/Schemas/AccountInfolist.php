@@ -12,18 +12,21 @@ class AccountInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('code'),
-                TextEntry::make(app()->getLocale() === 'lo' ? 'lao_name' : 'name')
-                    ->label(app()->getLocale() === 'lo' ? 'ຊື່ບັນຊີ' : 'Account Name'),
+                TextEntry::make('code')
+                    ->label(__('Code')),
+                TextEntry::make('name.' . app()->getLocale())
+                    ->label(__('Account Name')),
                 TextEntry::make('type')
+                    ->label(__('Type'))
                     ->badge(),
-                TextEntry::make('parent.name')
-                    ->label('Parent Account')
+                TextEntry::make('parent.name.' . app()->getLocale())
+                    ->label(__('Parent Account'))
                     ->placeholder('-'),
                 IconEntry::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label(__('Active')),
                 TextEntry::make('description')
+                    ->label(__('Description'))
                     ->placeholder('-')
                     ->columnSpanFull(),
                 TextEntry::make('created_at')

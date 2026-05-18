@@ -9,7 +9,6 @@ class Account extends Model
     protected $fillable = [
         'code',
         'name',
-        'lao_name',
         'type',
         'parent_id',
         'is_active',
@@ -17,8 +16,15 @@ class Account extends Model
     ];
 
     protected $casts = [
+        'name' => 'array',
         'is_active' => 'boolean',
     ];
+
+    public function getTranslatedNameAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->name[$locale] ?? $this->name['en'] ?? '';
+    }
 
     public function parent()
     {
